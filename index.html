@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Poemas para ti</title>
+<meta name="description" content="Un pequeño libro de poemas, hecho con amor.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --milk: #fff8f4;
+    --sakura: #ffd9e3;
+    --strawberry: #ff8fab;
+    --strawberry-dark: #f06a8d;
+    --ink: #6b4656;
+    --cream: #fff0c9;
+    --sky: #d9ecf7;
+  }
+  * { box-sizing: border-box; margin: 0; }
+  html, body { height: 100%; }
+  body {
+    font-family: "Zen Maru Gothic", "Hiragino Maru Gothic ProN", "Quicksand", system-ui, sans-serif;
+    background: var(--milk);
+    color: var(--ink);
+    display: grid;
+    place-items: center;
+    padding: 24px;
+    overflow-x: hidden;
+    position: relative;
+  }
+
+  /* fondo: puntitos suaves */
+  body::before {
+    content: "";
+    position: fixed; inset: 0;
+    background-image: radial-gradient(var(--sakura) 2px, transparent 2.5px);
+    background-size: 28px 28px;
+    opacity: .7;
+    z-index: 0;
+  }
+
+  main {
+    position: relative;
+    z-index: 1;
+    width: min(420px, 100%);
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 22px;
+  }
+
+  .mascot { width: 190px; height: auto; animation: bob 3.2s ease-in-out infinite; }
+  @keyframes bob { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-8px); } }
+
+  h1 {
+    font-size: clamp(2rem, 8vw, 2.6rem);
+    font-weight: 700;
+    letter-spacing: .02em;
+    line-height: 1.15;
+  }
+  .jp { font-size: .95rem; color: var(--strawberry-dark); letter-spacing: .3em; margin-top: 6px; }
+  p.msg { font-size: 1.05rem; line-height: 1.7; max-width: 30ch; }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: var(--strawberry);
+    color: #fff;
+    font: inherit;
+    font-weight: 700;
+    font-size: 1.1rem;
+    text-decoration: none;
+    padding: 16px 32px;
+    border-radius: 999px;
+    border: 3px solid #fff;
+    box-shadow: 0 6px 0 var(--strawberry-dark);
+    transition: transform .12s ease, box-shadow .12s ease;
+  }
+  .btn:hover { transform: translateY(2px); box-shadow: 0 4px 0 var(--strawberry-dark); }
+  .btn:active { transform: translateY(6px); box-shadow: 0 0 0 var(--strawberry-dark); }
+  .btn:focus-visible { outline: 3px solid var(--ink); outline-offset: 4px; }
+
+  footer { font-size: .9rem; opacity: .75; }
+
+  /* pétalos cayendo (único movimiento ambiental) */
+  .petal {
+    position: fixed; top: -30px; z-index: 0;
+    width: 14px; height: 14px;
+    background: var(--sakura);
+    border-radius: 80% 0 80% 0;
+    opacity: .9;
+    animation: fall linear infinite;
+  }
+  @keyframes fall {
+    to { transform: translate(60px, 105vh) rotate(540deg); }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .petal { display: none; }
+    .mascot { animation: none; }
+  }
+</style>
+</head>
+<body>
+
+<span class="petal" style="left:8%;  animation-duration:11s; animation-delay:0s"></span>
+<span class="petal" style="left:26%; animation-duration:14s; animation-delay:3s; width:10px;height:10px"></span>
+<span class="petal" style="left:48%; animation-duration:12s; animation-delay:6s"></span>
+<span class="petal" style="left:70%; animation-duration:15s; animation-delay:1s; width:11px;height:11px"></span>
+<span class="petal" style="left:88%; animation-duration:13s; animation-delay:4s"></span>
+
+<main>
+  <!-- Mascota: bolita con mejillas y un librito -->
+  <svg class="mascot" viewBox="0 0 200 200" role="img" aria-label="Una bolita sonriente sosteniendo un librito">
+    <ellipse cx="100" cy="186" rx="52" ry="7" fill="#ffd9e3"/>
+    <path d="M100 30c-42 0-68 30-68 68 0 38 28 70 68 70s68-32 68-70c0-38-26-68-68-68z" fill="#fff" stroke="#6b4656" stroke-width="4"/>
+    <circle cx="76" cy="92" r="6" fill="#6b4656"/>
+    <circle cx="124" cy="92" r="6" fill="#6b4656"/>
+    <ellipse cx="62" cy="108" rx="11" ry="7" fill="#ffb3c6"/>
+    <ellipse cx="138" cy="108" rx="11" ry="7" fill="#ffb3c6"/>
+    <path d="M92 106q8 9 16 0" fill="none" stroke="#6b4656" stroke-width="4" stroke-linecap="round"/>
+    <!-- librito -->
+    <rect x="70" y="130" width="60" height="38" rx="6" fill="#ff8fab" stroke="#6b4656" stroke-width="4"/>
+    <path d="M100 130v38" stroke="#6b4656" stroke-width="3"/>
+    <path d="M100 148c-5-5-10-5-12 0 2 6 8 9 12 11 4-2 10-5 12-11-2-5-7-5-12 0z" fill="#fff" transform="translate(0,-4) scale(1)"/>
+    <!-- flor en la cabeza -->
+    <g transform="translate(138 42)">
+      <circle r="5" cx="0" cy="-9" fill="#ffb3c6"/><circle r="5" cx="9" cy="-3" fill="#ffb3c6"/>
+      <circle r="5" cx="5" cy="8" fill="#ffb3c6"/><circle r="5" cx="-5" cy="8" fill="#ffb3c6"/>
+      <circle r="5" cx="-9" cy="-3" fill="#ffb3c6"/><circle r="4" fill="#fff0c9"/>
+    </g>
+  </svg>
+
+  <div>
+    <h1>Koi no yokan</h1>
+    <div class="jp">恋の予感</div>
+  </div>
+
+  <p class="msg">Escribí estas palabras pensando en ti. Ojalá te hagan sonreír un poquito.</p>
+
+  <a class="btn" href="https://drive.google.com/file/d/14pUwSMp9WTtdLF2tnnQFF-5iwhhfOfmt/view?usp=sharing" download>
+    <span aria-hidden="true">♡</span> Descargar poemas
+  </a>
+
+  <footer>hecho con amor ✿</footer>
+</main>
+
+</body>
+</html>
